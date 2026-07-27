@@ -69,8 +69,8 @@ const server = createServer((req, res) => {
   const parsedUrl = new URL(req.url, "http://localhost");
 
   if (parsedUrl.pathname === "/") {
-    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    res.end("<p>Service is running.</p>");
+    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
+    res.end("Service is running");
     return;
   }
 
