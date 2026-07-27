@@ -5,7 +5,7 @@ import { WebSocketServer, createWebSocketStream } from "ws";
 
 const UUID = process.env.UUID || "10889da6-14ea-4cc8-97fa-6c0bc410f121";
 const DOMAIN = process.env.DOMAIN || "example.com";
-const REMARKS = process.env.REMARKS || "verlay";
+const REMARKS = process.env.REMARKS || "vercel-ws";
 const WS_PATH = process.env.WS_PATH || "/";
 
 const uuidBytes = Buffer.from(UUID.replace(/-/g, ""), "hex");
