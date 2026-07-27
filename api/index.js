@@ -61,26 +61,25 @@ function vlessUrl() {
   return `vless://${UUID}@${DOMAIN}:443?encryption=none&security=tls&sni=${DOMAIN}&fp=chrome&type=ws&host=${DOMAIN}&path=${path}#${REMARKS}`;
 }
 
+function subscriptionBase64() {
+  return Buffer.from(`${vlessUrl()}\n`, "utf-8").toString("base64");
+}
+
 const server = createServer((req, res) => {
   const parsedUrl = new URL(req.url, "http://localhost");
 
   if (parsedUrl.pathname === "/") {
     res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(`
-      <h3>Verlay</h3>
-      <p>访问 <strong>/${UUID}</strong> 查看节点信息</p>
-    `);
+    res.end("<p>Service is running.</p>");
     return;
   }
 
   if (parsedUrl.pathname === `/${UUID}`) {
-    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-    res.end(`
-      <h3>VLESS URL</h3>
-      <p style="word-wrap:break-word">${vlessUrl()}</p>
-      <h3>WebSocket Path</h3>
-      <p>${WS_PATH}</p>
-    `);
+    res.writeHead(200, {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+    });
+    res.end(subscriptionBase64());
     return;
   }
 
