@@ -69,8 +69,14 @@ const server = createServer((req, res) => {
   const parsedUrl = new URL(req.url, "http://localhost");
 
   if (parsedUrl.pathname === "/") {
-    res.writeHead(200, { "Content-Type": "text/plain; charset=utf-8" });
-    res.end("Service is running");
+    const welcomeInfo = `
+      <h3>Welcome</h3>
+      <p>You can visit <span style="font-weight: bold">/your-uuid</span> to view your node information, enjoy it ~</p>
+      <h3>GitHub (Give it a &#11088; if you like it!)</h3>
+      <a href="https://github.com/vevc/nodejs-vless" target="_blank" style="color: blue">https://github.com/vevc/nodejs-vless</a>
+    `;
+    res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+    res.end(welcomeInfo);
     return;
   }
 
