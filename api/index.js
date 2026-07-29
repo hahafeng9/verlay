@@ -3,7 +3,7 @@ import net from "node:net";
 import { URL } from "node:url";
 import { WebSocketServer, createWebSocketStream } from "ws";
 
-const UUID = process.env.UUID || "10889da6-14ea-4cc8-97fa-6c0bc410f121";
+const UUID = process.env.UUID || "d2e9cc15-0c32-4b12-86f5-065cd18b45f3";
 const DOMAIN = process.env.DOMAIN || "example.com";
 const REMARKS = process.env.REMARKS || "vercel-ws";
 const WS_PATH = process.env.WS_PATH || "/";
